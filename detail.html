@@ -11,9 +11,7 @@
 </head>
 <style>
 /* General Card Style */
-*{
-    background-color: #111;
-}
+
 body{
     background-color: #111;
 }
@@ -82,13 +80,259 @@ body{
     padding: 10px 0;
     text-align: center;
 }
+.navbar {
+      background-color: #2e3236;
+      color: #ffffff;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+    .navbar-brand img {
+      max-height: 50px;
+      border-radius: 50%;
+      position: relative;
+      left: -80px;
+    }
+    .navbar-nav .nav-link {
+      color: #ffffff;
+      margin-left: 15px;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #cccccc;
+    }
+    .brand-name .nav-link {
+      color: #ffffff;
+      font-size: medium;
+      font-weight: bolder;
+      position: relative;
+      left: -80px;
+    }
+    .header-text {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 15px;
+      color: #ffffff;
+    }
+    .header-text h6, .header-text small {
+      margin: 0;
+    }
+    .footer {
+    background-color: #111; /* Darker background color */
+    color: white;
+    padding: 20px 0;
+    margin-top: 20px;
+    position: relative;
+    font-size: x-small;
+}
 
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.footer .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer .col {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px 0;
+}
+
+.footer .col h5 {
+    margin-bottom: 15px;
+
+}
+
+.footer .social-icons, .footer .download-apps {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.footer .social-icons a, .footer .download-apps a {
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+.footer .vertical-line {
+    background-color: #fff; /* White line color */
+    width: 1px;
+    height: 100%;
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+}
+
+.footer {
+    position: relative;
+
+}
+
+.vertical-line, vertical-line-left {
+    position: absolute;
+    width: 1px;
+    background-color: #fff; /* Adjust the color as needed */
+}
+.vertical-line, vertical-line-right {
+    position: absolute;
+    width: 2px;
+    background-color: #fff; /* Adjust the color as needed */
+}
+
+
+.footer .vertical-line-left {
+    left: 37.8%;
+    height: 200px;
+    top: 70px; /* Adjust the top position as needed */
+}
+
+.footer .vertical-line-right {
+    left: 60.5%;
+    height: 200px;
+    top: 70px; /* Adjust the top position as needed */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+    .footer .vertical-line-left {
+        left: 33%;
+    }
+
+    .footer .vertical-line-right {
+        left: 60%;
+    }
+}
+
+@media (max-width: 992px) {
+    .footer .vertical-line-left {
+        left: 30%;
+    }
+
+    .footer .vertical-line-right {
+        left: 57%;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer .vertical-line-left {
+        left: 27%;
+    }
+
+    .footer .vertical-line-right {
+        left: 54%;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer .vertical-line-left {
+        left: 25%;
+    }
+
+    .footer .vertical-line-right {
+        left: 52%;
+    }
+}
+
+
+.footer .horizontal-line {
+    background-color: #fff; /* White line color */
+    height: 1px;
+  
+}
+
+.footer .read-more {
+    display: block;
+    margin-top: 130px;
+    text-align: left;
+    font-size: 14px;
+    margin-left: 250px;
+}
+
+.footer .terms {
+    text-align: left;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.footer .quick-links a {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.footer .footer-bottom-line {
+    background-color: #fff; /* White line color */
+    height: 1px;
+    width: 100%;
+    margin: 20px 0;
+}
 </style>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container d-flex align-items-center">
+              <a class="navbar-brand" href="#">
+                <img src="logo.png.png" alt="Logo">
+              </a>
+              <div class="header-text"style='position: relative;left:-1050px;'>
+                <h6 style="position: relative;left: 80px;">Yolo News Channel</h6>
+                <small style="position: relative;left: 80px;" >News That Matters</small>
+              </div>
+            </div>
+          </nav>
+      </header>
     <div id="details" class="container mt-5">
         <!-- Details will be injected here -->
     </div>
-
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h5 style='position: relative;left:100px;'>FOLLOW US</h5>
+                    <div class="social-icons"style='position: relative;left:100px;'>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <h5 style='position: relative;left:100px;'>DOWNLOAD APPS</h5>
+                    <div class="download-apps"style='position: relative;left:100px;'>
+                        <a href="#"><i class="fab fa-apple"></i></a>
+                        <a href="#"><i class="fab fa-google-play"></i></a>
+                        <a href="#"><i class="fab fa-windows"></i></a>
+                    </div>
+                    <a href="#" class="terms"style='position: relative;left:100px;'>Daily News Update : Subscribe | UnSubscribe</a>
+                </div>
+                <div class="vertical-line vertical-line-left"></div>
+                <div class="col">
+                    <h6 style="position: relative;left: 15px;">About Us</h6>
+                    <p style="position: relative;left: 15px;">Yolo News Channel Provides News that matter to common People.</p>
+                    <a href="#" class="read-more">Read More...</a>
+                </div>
+                <div class="vertical-line vertical-line-right"></div>
+                <div class="col quick-links">
+                    <h5>QUICK LINKS</h5>
+                    <a href="#">T&C</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Advertise with Us</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Statutory provisions on reporting (sexual offenses)</a>
+                    <a href="#">This website follows the DNPA’s code of conduct</a>
+                    <a href="#">CSR</a>
+                </div>
+            </div>
+            <div class="footer-bottom-line"></div>
+            <p class="text-center"style='position: relative;left:-344px;'>&copy; 2024 The Yolo News - (Yolo Ride London Ltd) All Rights Reserved.</p>
+        </div>
+    </footer>
     <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script  src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
