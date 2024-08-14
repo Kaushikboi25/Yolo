@@ -37,6 +37,24 @@
             border-left: 2px solid black;
             height: 100%;
         }
+        .container {
+            margin-top: 20px;
+        }
+        .form-box {
+            padding: 20px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .form-title {
+            margin-bottom: 10px;
+        }
+        .input-group-text {
+            min-width: 150px;
+        }
+        .input-group.mb-3 input {
+            max-width: 150px;
+        }
     </style>
 </head>
 <body>
@@ -101,9 +119,9 @@
                         </div>
                         <div class="mb-3">
                             <label for="newsCategory" class="form-label">News Category:</label>
-                            <select class="form-select" id="newsCategory"></select>>
-                                <option selected>Select Category</option>
-                                <!-- Dynamic Categories Options -->
+                            <select class="form-select" id="newsCategory"onchange='updateCategory2()'></select>>
+                                <option selected style="display:none;"> Select Category</option>
+                               
                             </select>
                         </div>
                         <button type="button" class="btn btn-dark" onclick="saveNews()">Save</button>
@@ -112,7 +130,99 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <!-- Add Sponsor Section -->
+        <div class="form-box">
+            <div class="form-title"><strong>Add Sponsor</strong></div>
+            <form>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="sponsorLogo1">Choose file</label>
+                    <input type="file" class="form-control" id="sponsorLogo1"onchange='handleImageUpload()'>
+                    <button type="button" class="btn btn-outline-dark"onclick='add1()'>Add</button>
+                    <input type="hidden" id="imageSource">
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="sponsorLogo2">Choose file</label>
+                    <input type="file" class="form-control" id="sponsorLogo2"onchange='handleImageUpload2()'>
+                    <button type="button" class="btn btn-outline-dark"onclick='add2()'>Add</button>
+                    <input type="hidden" id="imageSource2">
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="sponsorLogo3">Choose file</label>
+                    <input type="file" class="form-control" id="sponsorLogo3"onchange='handleImageUpload3()'>
+                    <button type="button" class="btn btn-outline-dark"onclick='add3()'>Add</button>
+                    <input type="hidden" id="imageSource3">
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="sponsorLogo4">Choose file</label>
+                    <input type="file" class="form-control" id="sponsorLogo4"onchange='handleImageUpload4()'>
+                    <button type="button" class="btn btn-outline-dark"onclick='add4()'>Add</button>
+                    <input type="hidden" id="imageSource4">
+                </div>
+            </form>
+        </div>
 
+        <!-- Add Product Section -->
+        <div class="form-box">
+            <div class="form-title"><strong>Add Product</strong></div>
+            <div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="productImage">Choose file</label>
+                    <input type="file" class="form-control" id="productImage"onchange='handleImageUpload5()'>
+                    <input type="hidden" id="productSource">
+                </div>
+               
+              
+                <button type="submit" class="btn btn-dark"onclick='saveproduct()'>Save</button>
+                <button type="button" class="btn btn-outline-dark">Edit</button>
+            </div>
+        </div>
+
+        <!-- Add Place of the Day Section -->
+        <div class="form-box">
+            <div class="form-title"><strong>Add Place of the Day</strong></div>
+            <div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="placeImage">Choose file</label>
+                    <input type="file" class="form-control" id="placeImage"onchange='handleImageUpload6()'>
+                    <input type="hidden" id="placeSource">
+                </div>
+              
+               
+                <button type="submit" class="btn btn-dark"onclick='saveplace()'>Save</button>
+                <button type="button" class="btn btn-outline-dark">Edit</button>
+            </div>
+        </div>
+
+        <!-- Additional Advertisement Section -->
+        <div class="form-box">
+            <div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="adv1">ADV3</label>
+                    <input type="file" class="form-control" id="adv1"onchange='adv1()'>
+                    <input type="hidden" id="adv1s">
+                    <button type="submit" class="btn btn-dark"onclick='advv1()'>Save</button>
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="adv2">ADV4</label>
+                    <input type="file" class="form-control" id="adv2"onchange='adv2()'>
+                    <input type="hidden" id="adv2s">
+                    <button type="submit" class="btn btn-dark"onclick='advv2()'>Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-box">
+            <div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="adv1">Yolo TV</label>
+                    <input type="file" class="form-control" id="tv"onchange='savetv()'>
+                    <input type="hidden" id="tvsource">
+
+                </div>
+              <button type="submit" class="btn btn-dark"onclick='savetv2()'>Save</button>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         var firebaseConfig = {
@@ -177,7 +287,7 @@
             var source = document.getElementById("source").value;
             var newsCategory = document.getElementById("newsCategory").value;
         }
-alert('news added')
+
 
         function renderCategory(id, category) {
             return `
@@ -228,7 +338,234 @@ alert('news added')
             var newsCategoryDropdown = document.getElementById("newsCategory");
             newsCategoryDropdown.innerHTML = newsCategoryDropdown.innerHTML + dropdownOption;
         });
+        var database = firebase.database();
+
+function handleImageUpload() {
+   var fileInput = document.getElementById("sponsorLogo1");
+   var file = fileInput.files[0];
+   var reader = new FileReader();
+
+   reader.onloadend = function () {
+       var imageSource = reader.result;
+       document.getElementById("imageSource").value = imageSource;
+      
+   };
+  
+   if (file) {
+       reader.readAsDataURL(file);
+   }
+}
+function handleImageUpload2() {
+   var fileInput = document.getElementById("sponsorLogo2");
+   var file = fileInput.files[0];
+   var reader = new FileReader();
+
+   reader.onloadend = function () {
+       var imageSource = reader.result;
+       document.getElementById("imageSource2").value = imageSource;
+      
+   };
+  
+   if (file) {
+       reader.readAsDataURL(file);
+   }
+}
+function updateCategory2() {
+        var selectedCategoryId = document.getElementById("newsCategory").value;
+        var categElement = document.getElementById("categ");
+
+        // Fetch the category name from Firebase using the selected ID
+        if (selectedCategoryId) {
+            database.ref("categories/" + selectedCategoryId).once('value', function(snapshot) {
+                var categoryName = snapshot.val().cat;
+                categElement.value = categoryName; // Set the name of the category to the categ element
+            });
+        } else {
+            categElement.value = ""; // Clear the categ element if no category is selected
+        }
+    }
+function handleImageUpload3() {
+   var fileInput = document.getElementById("sponsorLogo3");
+   var file = fileInput.files[0];
+   var reader = new FileReader();
+
+   reader.onloadend = function () {
+       var imageSource = reader.result;
+       document.getElementById("imageSource3").value = imageSource;
+      
+   };
+  
+   if (file) {
+       reader.readAsDataURL(file);
+   }
+}
+function handleImageUpload4() {
+   var fileInput = document.getElementById("sponsorLogo4");
+   var file = fileInput.files[0];
+   var reader = new FileReader();
+
+   reader.onloadend = function () {
+       var imageSource = reader.result;
+       document.getElementById("imageSource4").value = imageSource;
+       alert( document.getElementById("imageSource4").value)
+      
+   };
+  
+   if (file) {
+       reader.readAsDataURL(file);
+   }
+}
+function handleImageUpload5() {
+   var fileInput = document.getElementById("productImage");
+   var file = fileInput.files[0];
+   var reader = new FileReader();
+
+   reader.onloadend = function () {
+       var imageSource = reader.result;
+       document.getElementById("productSource").value = imageSource;
+    
+      
+   };
+  
+   if (file) {
+       reader.readAsDataURL(file);
+   }
+}
+function savetv() {
+   var fileInput = document.getElementById("tv");
+   var file = fileInput.files[0];
+   var reader = new FileReader();
+
+   reader.onloadend = function () {
+       var imageSource = reader.result;
+       document.getElementById("tvsource").value = imageSource;
+    
+      
+   };
+  
+   if (file) {
+       reader.readAsDataURL(file);
+   }
+}
+
+function adv1() {
+   var fileInput = document.getElementById("adv1");
+   var file = fileInput.files[0];
+   var reader = new FileReader();
+
+   reader.onloadend = function () {
+       var imageSource = reader.result;
+       document.getElementById("adv1s").value = imageSource;
+    
+      
+   };
+  
+   if (file) {
+       reader.readAsDataURL(file);
+   }
+}
+function adv2() {
+   var fileInput = document.getElementById("adv2");
+   var file = fileInput.files[0];
+   var reader = new FileReader();
+
+   reader.onloadend = function () {
+       var imageSource = reader.result;
+       document.getElementById("adv2s").value = imageSource;
+    
+      
+   };
+  
+   if (file) {
+       reader.readAsDataURL(file);
+   }
+}
+
+
+
+function add1(){
+   var sponsor=document.getElementById('imageSource').value
+   database.ref("sponsersup").push().set({
        
+       "image": sponsor,
+       
+   });
+   alert('added')
+}
+function add2(){
+   var sponsor=document.getElementById('imageSource2').value
+   database.ref("sponsersup2").push().set({
+       
+       "image": sponsor,
+       
+   });
+   alert('added')
+}
+function add3(){
+   var sponsor=document.getElementById('imageSource3').value
+   database.ref("sponsersup3").push().set({
+       
+       "image": sponsor,
+       
+   });
+   alert('added')
+}
+function add4(){
+   var sponsor=document.getElementById('imageSource4').value
+   database.ref("sponsersup4").push().set({
+       
+       "image": sponsor,
+       
+   });
+   alert('added')
+}
+function saveproduct(){
+   var product=document.getElementById('productSource').value
+   database.ref("product").push().set({
+       
+       "image": product,
+       
+   });
+   alert('added')
+}
+
+function saveplace(){
+   var place=document.getElementById('placeSource').value
+   database.ref("place").push().set({
+       
+       "image": place,
+       
+   });
+   alert('added')
+}
+function savetv2(){
+   var tv=document.getElementById('tvsource').value
+   database.ref("tv").push().set({
+       
+       "image": tv,
+       
+   });
+   alert('added')
+}
+function advv1(){
+   var tv=document.getElementById('adv1s').value
+   database.ref("sponser").push().set({
+       
+       "image": tv,
+       
+   });
+   alert('added')
+}
+
+function advv2(){
+   var tv=document.getElementById('adv2s').value
+   database.ref("sponser2").push().set({
+       
+       "image": tv,
+       
+   });
+   alert('added')
+}
     </script>
 </body>
 </html>
