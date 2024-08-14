@@ -719,21 +719,22 @@ body.mobile-friendly * {
             height: 4vh;
             position: absolute;
             outline: none;
-            background: white;
-            border: 1px solid black;
+            background: transparent;
+            border: 1px solid white;
             font-weight: bold;
             top: 15vh;
             border-radius: 0px;
             left: 10%;
             padding-left: 10vh;
             font-weight: bold;
-            color: black;
+            color: white;
             z-index: 100;
             display: block;
-            top: 40%;
+            top: 39%;
             left: 88.5%;
+            border-radius: 8px;
         }#segr2::placeholder{
-            color: black;
+            color: white;
             font-weight: bold;
             left: 10%;
             top: 20.5%;
@@ -991,7 +992,11 @@ body.mobile-friendly * {
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
+  fuckAdBlock.on(true, function() {
+    
+}).on(false, function() {
+    document.getElementById('displayb').style.display='none'
+});
   function isMobileDevice() {
             return /Mobi|Android/i.test(navigator.userAgent);
         }
@@ -1000,11 +1005,7 @@ body.mobile-friendly * {
            
             location.href='yolonews.html'
         }
-  fuckAdBlock.on(true, function() {
-    alert('AdBlock detected !');
-}).on(false, function() {
-    document.getElementById('displayb').style.display='none'
-});
+ 
 
   
   firebase.database().ref("sponser").on("child_added", function(snapshot) {
