@@ -10,36 +10,79 @@
 <script  src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
 </head>
 <style>
-    #main-card{
-        width: 1050px;
-        position: relative;
-        
-    }
-    #like{
-    position: absolute;
-    left: 90%;
-    color: black;
-    top: 72%;
-    display: none;
-   }
-   #like:hover{
-    color: #1E90FF;
-   }
-   #share{
-    position: absolute;
-    left: 95%;
-    color: black;
-    top: 72%;
-    display: none;
-   }
-   #share:hover{
-    color: #927272;
-   }
-   #source{
-    position: absolute;
-    left: 75%;
-    
-   }
+/* General Card Style */
+*{
+    background-color: #111;
+}
+body{
+    background-color: #111;
+}
+#main-card {
+    background-color: #2b2b2b;
+    color: #f5f5f5;
+    border: 1px solid #444;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Image Styling */
+#main-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Headline Styling */
+#main-card h2.card-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+/* Subheadline Styling */
+#main-card p.card-text:first-of-type {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #cccccc;
+}
+
+/* Source Styling */
+#main-card p#source {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #888888;
+}
+
+/* News Details Styling */
+#main-card p.card-text:not(:first-of-type) {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #e0e0e0;
+    margin-bottom: 20px;
+}
+
+/* Like and Share Buttons Styling */
+#like, #share {
+    display: inline-block;
+    color: #888888;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#like:hover, #share:hover {
+    color: #ffffff;
+}
+
+#main-card .card-body {
+    padding: 10px 0;
+    text-align: center;
+}
+
 </style>
 <body>
     <div id="details" class="container mt-5">
@@ -70,21 +113,25 @@
 
         // Fetch the data for the given ID
         firebase.database().ref("news/" + id).once('value').then(function(snapshot) {
-            const data = snapshot.val();
-            const detailsHtml = `
-              <center>  <div class='card mb-3'id='main-card'>
-                     <img src=${data.image || ""} class="card-img-top">
-                    <div class='card-body'>
-                        <div class="fa fa-thumbs-up"id='like' aria-hidden="true"></div> <div class="fas fa-share"id='share' aria-hidden="true"></div> <h2 class='card-title'>${data.details}</h2>
-                        <p class='card-text'>${data.headline}</p>
-                         <p class='card-text'>${data.subHeadline}</p>
-                         <p class="card-text"><small class="text-muted"id='source'>Source:${snapshot.val().source}</small></p>
-                    </div>
-                   
-                </div></center>
-            `;
-            document.getElementById('details').innerHTML = detailsHtml;
-        });
+    const data = snapshot.val();
+    const detailsHtml = `
+        <center><div class='card mb-3' id='main-card'>
+            <div class='card-body'>
+                <h2 class='card-title'>${data.headline}</h2>
+                <p class="card-text"><small class="text-muted" id='source'>Source: ${data.source}</small></p>
+                <p class='card-text'>${data.subHeadline}</p>
+                <img src="${data.image || ''}" class="card-img-top">
+                <p class='card-text'>${data.details}</p>
+                <div>
+                    <i class="fa fa-thumbs-up" id='like' aria-hidden="true"></i>
+                    <i class="fas fa-share" id='share' aria-hidden="true"></i>
+                </div>
+            </div>
+        </div></center>
+    `;
+    document.getElementById('details').innerHTML = detailsHtml;
+});
+
     </script>
 </body>
 </html>
