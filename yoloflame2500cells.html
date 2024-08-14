@@ -119,10 +119,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="newsCategory" class="form-label">News Category:</label>
-                            <select class="form-select" id="newsCategory"onchange='updateCategory2()'></select>>
-                                <option selected style="display:none;"> Select Category</option>
-                               
+                            <select class="form-select" id="newsCategory" onchange='updateCategory2()'>
+                                <option selected disabled value="" style="display:none;">Select Category</option>
+                                <!-- Other options will be appended here by JavaScript -->
                             </select>
+                            
                         </div>
                         <button type="button" class="btn btn-dark" onclick="saveNews()">Save</button>
                     </form>
